@@ -1,0 +1,9 @@
+# Minimal Neovim config
+
+This is my personal Neovim config, aiming for minimalism.
+
+# Setup
+
+```
+git clone https://github.com/codemajom/neovim-config.git "${XDG_CONFIG_HOME:-$HOME/.config}"/nvim
+```
