@@ -1,5 +1,5 @@
 --[[ Colorscheme ]]
-vim.cmd("colorscheme lunaperche")
+-- vim.cmd("colorscheme lunaperche")
 
 --[[ Setting up package manager]]
 -- Bootstrap lazy.nvim
@@ -59,9 +59,9 @@ vim.o.confirm = true
 
 --[[ Keymaps ]]
 -- With netrw
-vim.keymap.set("n", "<leader>pv", vim.cmd.Ex, { desc = "Explore" })
+-- vim.keymap.set("n", "<leader>pv", vim.cmd.Ex, { desc = "Explore" })
 -- With oil.nvim
--- vim.keymap.set("n", "<leader>pv", "<CMD>Oil<CR>", { desc = "Oil" })
+vim.keymap.set("n", "<leader>pv", "<CMD>Oil<CR>", { desc = "Oil" })
 -- Dragging lines in Visual Mode
 vim.keymap.set("v", "J", ":m '>+1<CR>gv=gv")
 vim.keymap.set("v", "K", ":m '<-2<CR>gv=gv")
@@ -138,6 +138,8 @@ require("lazy").setup({
         {
             "nvim-mini/mini.nvim",
             config = function()
+                vim.cmd("colorscheme minicyan")
+
                 local statusline = require("mini.statusline")
                 statusline.setup({ use_icons = vim.g.have_nerd_font })
                 statusline.section_location = function()
@@ -153,6 +155,44 @@ require("lazy").setup({
             end,
         },
 
+        {
+            "stevearc/oil.nvim",
+            ---@module 'oil'
+            ---@type oil.SetupOpts
+            opts = {
+                columns = {
+                    -- "icon",
+                    "permissions",
+                    "size",
+                    "mtime",
+                },
+
+                delete_to_trash = true,
+
+                --[[ This is here to show the default keymaps
+                keymaps = {
+                    ["g?"] = { "actions.show_help", mode = "n" },
+                    ["<CR>"] = "actions.select",
+                    ["<C-s>"] = { "actions.select", opts = { vertical = true } },
+                    ["<C-h>"] = { "actions.select", opts = { horizontal = true } },
+                    ["<C-t>"] = { "actions.select", opts = { tab = true } },
+                    ["<C-p>"] = "actions.preview",
+                    ["<C-c>"] = { "actions.close", mode = "n" },
+                    ["<C-l>"] = "actions.refresh",
+                    ["-"] = { "actions.parent", mode = "n" },
+                    ["_"] = { "actions.open_cwd", mode = "n" },
+                    ["`"] = { "actions.cd", mode = "n" },
+                    ["g~"] = { "actions.cd", opts = { scope = "tab" }, mode = "n" },
+                    ["gs"] = { "actions.change_sort", mode = "n" },
+                    ["gx"] = "actions.open_external",
+                    ["g."] = { "actions.toggle_hidden", mode = "n" },
+                    ["g\\"] = { "actions.toggle_trash", mode = "n" },
+                },
+                --]]
+            },
+            -- Lazy loading is not recommended because it is very tricky to make it work correctly in all situations.
+            lazy = false,
+        },
     },
     install = { colorscheme = { "lunaperche" } },
     ui = {
