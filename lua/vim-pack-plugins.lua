@@ -87,30 +87,14 @@ require("oil").setup({
 })
 
 
-local zen_mode_colorcolumn
-local zen_width = 120
 require("zen-mode").setup({})
 vim.keymap.set("n", "<leader>z", function()
     require("zen-mode").toggle({
         window = {
             backdrop = 1,
-            width = zen_width,
+            width = 120,
             height = 1,
         },
-        on_open = function()
-            local win_width = vim.api.nvim_get_option_value("colorcolumn", {})
-
-            if tonumber(win_width) >= zen_width then
-                vim.opt.colorcolumn = {}
-            end
-
-            zen_mode_colorcolumn = win_width
-        end,
-        on_close = function()
-            if vim.opt.colorcolumn == {} then
-                vim.opt.colorcolumn = zen_mode_colorcolumn
-            end
-        end,
     })
 end, { desc = "Toggle Zen Mode" })
 

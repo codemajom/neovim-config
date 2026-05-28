@@ -6,7 +6,7 @@ Neovim 0.12+ required.
 # Setup
 
 ```
-git clone https://github.com/codemajom/neovim-config.git "${XDG_CONFIG_HOME:-$HOME/.config}"/nvim
+git clone https://github.com/makicodemonkey/neovim-config.git "${XDG_CONFIG_HOME:-$HOME/.config}"/nvim
 ```
 
 # Dependencies
@@ -18,6 +18,7 @@ git clone https://github.com/codemajom/neovim-config.git "${XDG_CONFIG_HOME:-$HO
 # Plugins
 
 - folke/which-key.nvim
+- folke/zen-mode.nvim
 - nvim-mini/mini.nvim
     - mini.statusline
     - mini.pick
